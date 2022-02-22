@@ -1,60 +1,26 @@
-import React from "react";
-import bnrd from "../../images/bnrd.png";
-import cv from "../../files/kibala-bonard-Cv.pdf";
-import {
-  Homecard,
-  HomecardContainer,
-  HomeContainer,
-  Description,
-  HomeDetailContainer,
-  CardText,
-  HomeCardImage,
-  H1CardText,
-  HomeDetail,
-  Grade,
-  Paragraph,
-  DetailContent,
-  Btn,
-  BtnLink,
-  GradeH2,
-} from "./homeElements";
+import React from 'react';
+import StatCompnent from '../../components/statcompnent/statcompnent';
+import { ChartContainer, HomeContainer, StatsContainer } from './homeElements';
+import MailIcon from "@mui/icons-material/Mail";
+import DeleteIcon from '@mui/icons-material/Delete'
+import AppCharts from '../../components/charts/appcharts';
 
-const Home = () => {
-  return (
-    <div id="home">
-      <HomeContainer>
-        <HomeDetailContainer>
-          <HomeDetail>
-            <div>
-              <DetailContent>
-                <Grade>
-                  <GradeH2>Devéloppeur Full Stack</GradeH2>
-                </Grade>
-                <Description>
-                  <Paragraph>
-                    Expert en devéloppement logiciel dont les applications web,
-                    Web Mobile, Mobile et Desktop.
-                  </Paragraph>
-                </Description>
-              </DetailContent>
-            </div>
+const sx= {
+    fontSize: '30px',
+}
+const Home = ()=>{
+return (
+    <HomeContainer>
+        <StatsContainer>
+            <StatCompnent title='TOTAL ETUDIANT' count={`2456`} text={`Université de Kinshasa`} icon={<MailIcon sx={sx}/>}/>
+            <StatCompnent title='TOTAL FRAIS' count={`500`} paie ='paiement' text={`Université de Kinshasa`} icon={<DeleteIcon sx={sx}/>}/>
+            <StatCompnent title='UTILISATEURS' count={`4.000.000`} text={`MyCampa users`} icon={<MailIcon sx={sx}/>} />
+        </StatsContainer>
+        <ChartContainer>
+            <AppCharts/>
+        </ChartContainer>
+    </HomeContainer>
+)
+}
 
-            <Btn>
-              <BtnLink href={`${cv}`}>Voir mon CV</BtnLink>
-            </Btn>
-          </HomeDetail>
-        </HomeDetailContainer>
-
-        <HomecardContainer>
-          <Homecard>
-            <HomeCardImage src={bnrd} alt="bonard image" />
-          </Homecard>
-          <CardText>
-            <H1CardText> Bonard Kibala Inkumbwa</H1CardText>
-          </CardText>
-        </HomecardContainer>
-      </HomeContainer>
-    </div>
-  );
-};
 export default Home;
