@@ -15,23 +15,22 @@ import SchoolIcon from "@mui/icons-material/School";
 import { Link } from "react-router-dom";
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
-  color: "#220a37",
+  color: "white",
   [`& .${treeItemClasses.content}`]: {
-    color: "#220a37",
-    borderTopRightRadius: theme.spacing(2),
-    borderBottomRightRadius: theme.spacing(2),
+    color: "#ff8000",
+    borderTopLeftRadius: theme.spacing(2),
+    borderBottomLeftRadius: theme.spacing(2),
     paddingRight: theme.spacing(1),
     fontWeight: theme.typography.fontWeightMedium,
     "&.Mui-expanded": {
       fontWeight: theme.typography.fontWeightRegular,
     },
     "&:hover": {
-      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-      color: "#ff8000",
+      backgroundColor: `white`,
+      color: "#290038",
     },
     "&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused": {
-      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-      color: "#ff8000",
+      backgroundColor: `white`,
     },
     [`& .${treeItemClasses.label}`]: {
       fontWeight: "inherit",
@@ -69,11 +68,14 @@ function StyledTreeItem(props) {
         >
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
           <Typography
-            variant="body2"
+            variant="h6"
             sx={{
               flexGrow: 1,
-              color: "black",
+              color: "white",
               fontSize: 13,
+              "&:hover": {
+                color: "#290038",
+              },
             }}
           >
             {labelText}
@@ -108,7 +110,14 @@ const SidebarMenu = () => {
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
-      sx={{ height: "100%", flexGrow: 1, overflowY: "auto", position: "fixed" }}
+      sx={{
+        height: "100%",
+        flexGrow: 1,
+        overflowY: "auto",
+        position: "fixed",
+        backgroundColor: "#290038",
+        paddingTop: 2,
+      }}
     >
       <Link to="/">
         <StyledTreeItem

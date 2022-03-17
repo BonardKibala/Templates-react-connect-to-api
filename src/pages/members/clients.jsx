@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clients } from "../../reducers/clientsReducer";
 import LoadingSpins from "../../components/loader/loading";
 import MembersTable from "../../components/tables/membersTables";
+import DataTableGrid from "../../components/tables/dataTableGrid";
 
 const Clients = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const Clients = () => {
           </Container1>
           <Container2>
             <MembersTable data={data} dispatch={dispatch} />
+            <DataTableGrid />
           </Container2>
         </div>
       ) : (

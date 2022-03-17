@@ -47,14 +47,14 @@ export const FormContainer = styled.div`
 `;
 export const InputContainer = styled.div`
   width: 50%;
-  height: 3.5rem;
-  border: 1px solid black;
+  height: 4.5rem;
+  // border: 1px solid black;
   border-radius: 10px;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
-  padding-top: 10px;
+  align-items:center;
 `;
 export const SubmitContainer = styled.div`
   display: flex;
@@ -67,7 +67,8 @@ export const ForgotText = styled.p`
   margin-top: 2rem;
   margin-left: 15rem;
   &:hover {
-    color: blue;
+    color: #220a37;
     cursor: pointer;
+    font-weight:bold;
   }
 `;

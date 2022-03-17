@@ -15,9 +15,9 @@ export const Container1 = styled.div`
 `;
 export const SidebarContainer = styled.div`
   width: 20%;
-  padding-top: 1rem;
   height: auto;
   position: relative;
+  top:-0.5rem
 `;
 
 export const PagesContainer = styled.div`
