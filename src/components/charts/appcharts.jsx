@@ -36,6 +36,7 @@ class AppCharts extends React.Component {
           "Mai",
           "Juin",
           "Juillet",
+          "Aout"
         ],
         datasets: [
           {

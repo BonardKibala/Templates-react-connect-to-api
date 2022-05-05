@@ -15,9 +15,9 @@ import SchoolIcon from "@mui/icons-material/School";
 import { Link } from "react-router-dom";
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
-  color: "white",
+  color: `white`,
   [`& .${treeItemClasses.content}`]: {
-    color: "#ff8000",
+    color: "white",
     borderTopLeftRadius: theme.spacing(2),
     borderBottomLeftRadius: theme.spacing(2),
     paddingRight: theme.spacing(1),
@@ -26,11 +26,12 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
       fontWeight: theme.typography.fontWeightRegular,
     },
     "&:hover": {
-      backgroundColor: `white`,
-      color: "#290038",
+      backgroundColor: `purple`,
+      color: "white",
     },
     "&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused": {
-      backgroundColor: `white`,
+      backgroundColor: `purple`,
+      color: "#ff8000",
     },
     [`& .${treeItemClasses.label}`]: {
       fontWeight: "inherit",
@@ -72,10 +73,13 @@ function StyledTreeItem(props) {
             sx={{
               flexGrow: 1,
               color: "white",
-              fontSize: 13,
+              fontSize: 15,
               "&:hover": {
-                color: "#290038",
+                color: "white",
               },
+              "&:visited":{
+                color: `#290038`,
+              }
             }}
           >
             {labelText}
@@ -176,7 +180,7 @@ const SidebarMenu = () => {
         </Link>
       </StyledTreeItem>
 
-      <StyledTreeItem nodeId="4" labelText="Etudiants" labelIcon={SchoolIcon} />
+      <StyledTreeItem nodeId="4" labelText="Paiements" labelIcon={SchoolIcon} />
     </TreeView>
   );
 };

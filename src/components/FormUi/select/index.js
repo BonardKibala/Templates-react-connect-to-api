@@ -3,6 +3,26 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { useField, useFormikContext } from "formik";
 
+export const customizedTextfield = {
+  "& label.Mui-focused": {
+    color: "#290038",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#290038",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#290038",
+    },
+    "&:hover fieldset": {
+      borderColor: "#290038",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#ff8000",
+    },
+  },
+};
+
 const SelectWrapper = ({ name, options, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
@@ -16,7 +36,6 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
     ...field,
     ...otherProps,
     select: true,
-    fullwith: true,
     variant: "outlined",
     onChange: handleChange,
   };
@@ -27,7 +46,7 @@ const SelectWrapper = ({ name, options, ...otherProps }) => {
   }
 
   return (
-    <TextField {...configSelect}>
+    <TextField {...configSelect} sx={[{ width: "100%" }, customizedTextfield]}>
       {Object.keys(options).map((item, pos) => {
         return (
           <MenuItem key={pos} value={item}>

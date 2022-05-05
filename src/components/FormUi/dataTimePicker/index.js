@@ -1,5 +1,5 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
+import {TextField} from "@mui/material";
 import { useField } from "formik";
 
 const DateTimePicker = ({ name, ...otherProps }) => {
@@ -10,7 +10,6 @@ const DateTimePicker = ({ name, ...otherProps }) => {
     ...otherProps,
     type: "date",
     variant: "outlined",
-    fullWidth: true,
     InputLabelProps: {
       shrink: true,
     },

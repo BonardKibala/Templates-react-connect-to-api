@@ -22,7 +22,7 @@ export const MenuAppBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor: "#220a37"}}>
+      <AppBar position="static" sx={{ backgroundColor: "#220a37" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -33,7 +33,11 @@ export const MenuAppBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, color: "#ff8000" }}
+          >
             MyCampa
           </Typography>
           {
@@ -47,7 +51,6 @@ export const MenuAppBar = () => {
                 color="inherit"
               >
                 <AccountCircle sx={{ fontSize: 35 }} />
-               
               </IconButton>
               <Menu
                 id="menu-appbar"

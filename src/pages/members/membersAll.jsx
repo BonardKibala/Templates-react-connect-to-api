@@ -5,11 +5,12 @@ import {
   Container2,
   Title,
 } from "./clientsElements";
-import FormDialogs from "../../components/dialogs/formDialog";
-import MembersTable from "../../components/tables/membersTables";
+import MembersTable from "../../components/tables/dataTableGrid";
 import { fetchAllUser } from "../../reducers/fetchingReducer";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingSpins from "../../components/loader/loading";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const AllAdmin = () => {
   const dispatch = useDispatch();
@@ -24,10 +25,17 @@ const AllAdmin = () => {
         <div>
           <Container1>
             <Title>Tous nos membres</Title>
-            <FormDialogs />
+            <Link to="/RegisterAdmin">
+            <Button
+              variant="outlined"
+              sx={{ color: "#220a37", border: "1px solid #ff8000" }}
+            >
+              Ajouter
+            </Button>
+            </Link>
           </Container1>
           <Container2>
-            <MembersTable data={data} dispatch={dispatch} />
+            <MembersTable data={data} dispatch={dispatch} link='#'/>
           </Container2>
         </div>
       ) : (

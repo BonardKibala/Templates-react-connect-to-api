@@ -36,7 +36,7 @@ const Login = () => {
 
   const authenticate = () => {
     if (auth === "signin") {
-      dispatch(signinUser({ username: email, password }));
+      dispatch(signinUser({ username: email, password: password }));
     }
   };
 
@@ -74,7 +74,7 @@ const Login = () => {
               <TextField
                 name="email"
                 label="Nom d'utilisateur"
-                InputProps={{ disableUnderline: true }}
+                // InputProps={{ disableUnderline: true }}
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 sx={{ width: "95%" }}
@@ -86,7 +86,7 @@ const Login = () => {
                 label="Mot de passe"
                 id="standard-basic"
                 type="password"
-                InputProps={{ disableUnderline: true }}
+                // InputProps={{ disableUnderline: true }}
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 sx={{ width: "95%" }}
@@ -118,6 +118,15 @@ const Login = () => {
                 )}
               </Button>
             </SubmitContainer>
+            {error && (
+              <Alert
+                variant="outlined"
+                severity="error"
+                sx={{ width: "60%", margin: "0 auto", marginTop: "2rem" }}
+              >
+                {error}
+              </Alert>
+            )}
           </>
         ) : (
           <>
@@ -164,15 +173,6 @@ const Login = () => {
         )}
         {/* </Form>
         </Formik> */}
-        {error && (
-          <Alert
-            variant="outlined"
-            severity="error"
-            sx={{ width: "60%", margin: "0 auto", marginTop: "2rem" }}
-          >
-            {error}
-          </Alert>
-        )}
         <ForgotText onClick={() => forgot()}>
           {!forgotPassword ? "Mot de passe oublié" : "Connexion"}
         </ForgotText>

@@ -41,7 +41,7 @@ const FormDialog = () => {
     password_confirm: "",
     telephone: "",
     email: "",
-    fonction: "",
+    descritpion: "",
     admin_role: "",
   });
 

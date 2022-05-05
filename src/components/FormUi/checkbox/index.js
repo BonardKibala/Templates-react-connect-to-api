@@ -1,6 +1,6 @@
 import React from "react";
-import Checkbox from "@mui/material/Checkbox";
 import {
+  Checkbox,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -23,9 +23,8 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
   };
 
   const configFormControl = {};
-  if (meta && meta.touched && meta.error){
-      configFormControl.error = true;
-
+  if (meta && meta.touched && meta.error) {
+    configFormControl.error = true;
   }
 
   return (

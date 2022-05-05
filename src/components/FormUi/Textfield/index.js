@@ -1,16 +1,34 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
 import { useField } from "formik";
 
-const TextFieldWrapper = ({ name, onChanged, ...otherProps }) => {
+export const customizedTextfield = {
+  "& label.Mui-focused": {
+    color: "#290038",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#290038",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#290038",
+    },
+    "&:hover fieldset": {
+      borderColor: "#290038",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#ff8000",
+    },
+  },
+};
+
+const TextFieldWrapper = ({ name, ...otherProps }) => {
   const [field, mata] = useField(name);
 
   const configTextField = {
     ...field,
     ...otherProps,
-    fullwith: true,
     variant: "outlined",
-    onChange: onChanged,
   };
 
   if (mata && mata.touched && mata.error) {
@@ -18,7 +36,12 @@ const TextFieldWrapper = ({ name, onChanged, ...otherProps }) => {
     configTextField.helperText = mata.error;
   }
 
-  return <TextField {...configTextField} />;
+  return (
+    <TextField
+      {...configTextField}
+      sx={[{ width: "100%" }, customizedTextfield]}
+    />
+  );
 };
 
 export default TextFieldWrapper;

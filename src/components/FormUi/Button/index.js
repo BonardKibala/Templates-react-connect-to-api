@@ -1,17 +1,17 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import { Button } from "@mui/material";
 import { useFormikContext } from "formik";
 
 const ButtonWrapper = ({ children, ...otherProps }) => {
   const { submitForm } = useFormikContext();
 
-  const handleSubmit = () => {
-    submitForm();
+  const handleSubmit = async () => {
+    await submitForm();
   };
 
   const configButton = {
+    ...otherProps,
     variant: "contained",
-    fullWidth: false,
     onClick: handleSubmit,
   };
 

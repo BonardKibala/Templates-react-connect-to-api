@@ -9,8 +9,9 @@ import FormDialogs from "../../components/dialogs/formDialog";
 import { useSelector, useDispatch } from "react-redux";
 import { clients } from "../../reducers/clientsReducer";
 import LoadingSpins from "../../components/loader/loading";
-import MembersTable from "../../components/tables/membersTables";
-import DataTableGrid from "../../components/tables/dataTableGrid";
+import MembersTable from "../../components/tables/dataTableGrid";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const Clients = () => {
   const dispatch = useDispatch();
@@ -24,11 +25,17 @@ const Clients = () => {
         <div>
           <Container1>
             <Title>Nos clients</Title>
-            <FormDialogs />
+            <Link to="/update-member">
+            <Button
+              variant="outlined"
+              sx={{ color: "#220a37", border: "1px solid #ff8000" }}
+            >
+              Ajouter
+            </Button>
+            </Link>
           </Container1>
           <Container2>
-            <MembersTable data={data} dispatch={dispatch} />
-            <DataTableGrid />
+            <MembersTable data={data} dispatch={dispatch} link='#' />
           </Container2>
         </div>
       ) : (
