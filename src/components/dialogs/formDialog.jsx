@@ -14,9 +14,8 @@ import { createAdmin } from "../../reducers/createReducer";
 import Alert from "@mui/material/Alert";
 
 const FormDialog = () => {
-  const { error, loading, succes } = useSelector((state) => state.create);
+  const { error, succes } = useSelector((state) => state.create);
   const dispatch = useDispatch();
-  // const state = useSelector((state) => state.manager);
 
   const [open, setOpen] = React.useState(false);
   const maxWidth = "md";

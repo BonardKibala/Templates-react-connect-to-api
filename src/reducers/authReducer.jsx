@@ -5,6 +5,7 @@ const initialState = {
   mycampa_token: "",
   loading: false,
   error: "",
+  userlogin: {},
 };
 
 export const signupUser = createAsyncThunk("signupuser", async (body) => {
@@ -23,6 +24,12 @@ const authReducer = createSlice({
   reducers: {
     addToken: (state, action) => {
       state.mycampa_token = localStorage.getItem("mycampa_token");
+      const user = localStorage.getItem("user");
+      state.userlogin = JSON.parse(user);
+    },
+    removeToken: (state, action) => {
+      state.mycampa_token = localStorage.removeItem("mycampa_token");
+      state.userlogin = localStorage.removeItem("user");
     },
   },
   extraReducers: {
@@ -44,7 +51,7 @@ const authReducer = createSlice({
     },
     [signinUser.fulfilled]: (
       state,
-      { payload: { error, mycampa_token, message } }
+      { payload: { error, mycampa_token, message, user } }
     ) => {
       state.loading = false;
       if (error && !message) {
@@ -54,11 +61,13 @@ const authReducer = createSlice({
       } else {
         state.mycampa_token = mycampa_token;
         localStorage.setItem("mycampa_token", mycampa_token);
+        state.userlogin = user;
+        localStorage.setItem("user", JSON.stringify(user));
       }
     },
   },
 });
 
-export const { addToken } = authReducer.actions;
+export const { addToken, removeToken } = authReducer.actions;
 
 export default authReducer.reducer;

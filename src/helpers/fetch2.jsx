@@ -1,6 +1,5 @@
-const host = "http://localhost:3000"
+const host = "http://localhost:3000";
 export const fetch2 = async (api, body) => {
-  //localhost:4000
   const res = await fetch(api, {
     method: "post",
     headers: {
@@ -15,7 +14,6 @@ export const fetch2 = async (api, body) => {
 };
 
 export const fetch3 = async (api, type) => {
-  //localhost:4000
   const res = await fetch(api, {
     method: `${type}`,
     headers: {
@@ -28,8 +26,7 @@ export const fetch3 = async (api, type) => {
   return await res.json();
 };
 
-export const fetchUpdateRemove = async (api, type) => {
-  //localhost:4000
+export const fetchRemove = async (api, type) => {
   const res = await fetch(api, {
     method: `${type}`,
     headers: {

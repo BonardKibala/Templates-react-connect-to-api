@@ -77,9 +77,9 @@ function StyledTreeItem(props) {
               "&:hover": {
                 color: "white",
               },
-              "&:visited":{
+              "&:visited": {
                 color: `#290038`,
-              }
+              },
             }}
           >
             {labelText}
@@ -179,8 +179,13 @@ const SidebarMenu = () => {
           />
         </Link>
       </StyledTreeItem>
-
-      <StyledTreeItem nodeId="4" labelText="Paiements" labelIcon={SchoolIcon} />
+      <Link to="/paylist">
+        <StyledTreeItem
+          nodeId="4"
+          labelText="Paiements"
+          labelIcon={SchoolIcon}
+        />
+      </Link>
     </TreeView>
   );
 };

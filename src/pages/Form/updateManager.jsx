@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { updatedAdmin } from "../../reducers/createReducer";
+import { updatedManager } from "../../reducers/createReducer";
 import CheckboxWrapper from "../../components/FormUi/checkbox";
 import ButtonWrapper from "../../components/FormUi/Button";
 import { customizedTextfield } from "../../components/FormUi/Textfield/index";
@@ -25,15 +25,17 @@ const FORM_VALIDATION = Yup.object().shape({
     .oneOf([true], "Les conditions doivent être acceptées")
     .required("Les conditions doivent être acceptées"),
 });
-const UpdateAdminForm = (props) => {
-  const { updateError, loading, updateSucces } = useSelector((state) => state.create);
+const UpdateManagerForm = (props) => {
+  const { updateManError, loading, updateManSucces } = useSelector(
+    (state) => state.create
+  );
   const dispatch = useDispatch();
   const [data, setData] = React.useState({
     ...props.location.state,
   });
 
-  const admin = {
-    ...props.location.state.admin,
+  const manager = {
+    ...props.location.state.gestionaireEtab,
   };
   return (
     <div
@@ -59,12 +61,13 @@ const UpdateAdminForm = (props) => {
                     prenom: data.prenom,
                     email: data.email,
                     telephone: data.telephone,
-                    admin_role: data.admin.admin_role,
-                    description: data.admin.description,
+                    description: data.gestionaireEtab.description,
                     id_utilisateur: data.id_utilisateur,
-                    id_admin: admin.id_admin,
+                    gestionnaire_id: manager.gestionnaire_id,
+                    affectation: data.gestionaireEtab.affectation,
+                    grade: data.gestionaireEtab.grade,
                   };
-                  await dispatch(updatedAdmin(body));
+                  await dispatch(updatedManager(body));
                 }
               }}
             >
@@ -80,11 +83,11 @@ const UpdateAdminForm = (props) => {
                         textAlign: "center",
                       }}
                     >
-                      Modifier les infos d'un administrateur MyCampa
+                      Modifier les infos d'un gestionniare MyCampa
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    {updateSucces ? (
+                    {updateManSucces ? (
                       <Alert
                         variant="outlined"
                         severity="success"
@@ -94,9 +97,9 @@ const UpdateAdminForm = (props) => {
                           marginTop: "1rem",
                         }}
                       >
-                        {updateSucces}
+                        {updateManSucces}
                       </Alert>
-                    ) : updateError ? (
+                    ) : updateManError ? (
                       <Alert
                         variant="outlined"
                         severity="success"
@@ -106,7 +109,7 @@ const UpdateAdminForm = (props) => {
                           marginTop: "1rem",
                         }}
                       >
-                        {updateError}
+                        {updateManError}
                       </Alert>
                     ) : (
                       ""
@@ -190,39 +193,69 @@ const UpdateAdminForm = (props) => {
                   <Grid item xs={6}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">
-                        Role
+                        Affectation
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="Role"
+                        label="Affectation"
                         sx={[{ width: "100%" }, customizedTextfield]}
-                        value={data.admin.admin_role}
+                        value={data.gestionaireEtab.affectation}
                         onChange={(e) =>
                           setData({
                             ...data,
-                            admin: {
-                              admin_role: e.target.value,
+                            gestionaireEtab: {
+                              affectation: e.target.value,
                             },
                           })
                         }
                       >
-                        <MenuItem value="super_admin">super-admin</MenuItem>
-                        <MenuItem value="system_admin">system_admin</MenuItem>
+                        <MenuItem value="Unikin">Unikin</MenuItem>
+                        <MenuItem value="UPC">UPC</MenuItem>
+                        <MenuItem value="UK">UK</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>
+
+                  <Grid item xs={6}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Grade
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Grade"
+                        sx={[{ width: "100%" }, customizedTextfield]}
+                        value={data.gestionaireEtab.grade}
+                        onChange={(e) =>
+                          setData({
+                            ...data,
+                            gestionaireEtab: {
+                              grade: e.target.value,
+                            },
+                          })
+                        }
+                      >
+                        <MenuItem value="Gestionnaire principal">
+                          Gestionnaire principal
+                        </MenuItem>
+                        <MenuItem value="Gestionnaire">Gestionnaire</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+
                   <Grid item xs={12}>
                     <TextField
                       variant="outlined"
                       label="Description"
                       type="text"
                       sx={[{ width: "100%" }, customizedTextfield]}
-                      value={data.admin.description}
+                      value={data.gestionaireEtab.description}
                       onChange={(e) =>
                         setData({
                           ...data,
-                          admin: {
+                          gestionaireEtab: {
                             description: e.target.value,
                           },
                         })
@@ -275,4 +308,4 @@ const UpdateAdminForm = (props) => {
   );
 };
 
-export default UpdateAdminForm;
+export default UpdateManagerForm;

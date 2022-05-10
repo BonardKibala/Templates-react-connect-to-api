@@ -22,7 +22,7 @@ export const customizedTextfield = {
   },
 };
 
-const TextFieldWrapper = ({ name, ...otherProps }) => {
+const TextFieldWrapper = ({ name, value, ...otherProps }) => {
   const [field, mata] = useField(name);
 
   const configTextField = {
@@ -40,6 +40,7 @@ const TextFieldWrapper = ({ name, ...otherProps }) => {
     <TextField
       {...configTextField}
       sx={[{ width: "100%" }, customizedTextfield]}
+      value={value}
     />
   );
 };

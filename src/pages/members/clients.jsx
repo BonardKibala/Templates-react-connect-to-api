@@ -5,7 +5,6 @@ import {
   Container2,
   Title,
 } from "./clientsElements";
-import FormDialogs from "../../components/dialogs/formDialog";
 import { useSelector, useDispatch } from "react-redux";
 import { clients } from "../../reducers/clientsReducer";
 import LoadingSpins from "../../components/loader/loading";

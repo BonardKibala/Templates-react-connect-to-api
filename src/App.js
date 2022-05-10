@@ -11,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(addToken());
-  }, []);
+  }, [dispatch]);
 
   return <div>{token ? <Dashboard /> : <Login />}</div>;
 };

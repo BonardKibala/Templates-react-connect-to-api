@@ -14,7 +14,7 @@ const MessageDialog = ({ deleteMyUser }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { deleteSuccess, deleteError } = useSelector((state) => state.create);
+  const { deleteSuccess } = useSelector((state) => state.create);
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {

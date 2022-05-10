@@ -8,9 +8,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { useSelector } from "react-redux";
+import Login from "../../pages/login/login";
 
 export const MenuAppBar = () => {
+  const removeToken = () => {
+    return (<Login/>)
+  };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const user = useSelector((state) => state.user.userlogin);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,6 +27,14 @@ export const MenuAppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const names =
+    user.nom.toUpperCase() +
+    " " +
+    user.postnom.toUpperCase() +
+    " " +
+    user.prenom.slice(0, 1).toUpperCase() +
+    user.prenom.slice(1).toLowerCase();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -42,16 +58,30 @@ export const MenuAppBar = () => {
           </Typography>
           {
             <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
               >
-                <AccountCircle sx={{ fontSize: 35 }} />
-              </IconButton>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "#ff8000" }}
+                >{`${names}`}</Typography>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle sx={{ fontSize: 35 }} />
+                </IconButton>
+              </div>
+
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -67,8 +97,14 @@ export const MenuAppBar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    removeToken();
+                  }}
+                >
+                  Deconnexion
+                </MenuItem>
               </Menu>
             </div>
           }

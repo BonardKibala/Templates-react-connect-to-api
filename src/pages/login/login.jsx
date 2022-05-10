@@ -14,22 +14,11 @@ import {
   SubmitContainer,
   LoaderContainer,
 } from "./loginElements";
-// import { Formik, Form } from "formik";
-// import * as Yup from "yup";
-
-// const INITIAL_FORM_STATE = {
-//   email: "",
-//   password: "",
-// };
-// const FORM_VALIDATION = Yup.object().shape({
-//   email: Yup.string().email("l'adresse email est invalid").required("Required"),
-//   password: Yup.string().required("Champs obligatoire"),
-// });
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useState("signin");
+  const auth = "signin";
   const [forgotPassword, setForgotPassword] = useState(false);
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
@@ -60,14 +49,6 @@ const Login = () => {
             ? "Connexion"
             : "Avez-vous oubliez votre mot de passe ?"}
         </Title>
-        {/* <Formik
-          initialValues={{ ...INITIAL_FORM_STATE }}
-          validationSchema={FORM_VALIDATION}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-        >
-          <Form> */}
         {!forgotPassword ? (
           <>
             <InputContainer>
@@ -86,7 +67,6 @@ const Login = () => {
                 label="Mot de passe"
                 id="standard-basic"
                 type="password"
-                // InputProps={{ disableUnderline: true }}
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 sx={{ width: "95%" }}
@@ -132,7 +112,6 @@ const Login = () => {
           <>
             <InputContainer>
               <TextField
-                // error
                 name="email"
                 label="Adresse e-mail"
                 InputProps={{ disableUnderline: true }}
@@ -171,8 +150,6 @@ const Login = () => {
             </SubmitContainer>
           </>
         )}
-        {/* </Form>
-        </Formik> */}
         <ForgotText onClick={() => forgot()}>
           {!forgotPassword ? "Mot de passe oublié" : "Connexion"}
         </ForgotText>

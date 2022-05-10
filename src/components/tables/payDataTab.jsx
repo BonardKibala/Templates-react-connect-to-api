@@ -17,9 +17,6 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { styled } from "@mui/material/styles";
-import EditIcon from "@mui/icons-material/Edit";
-import MessageDialog from "../dialogs/messageDialog";
-import { deleteUser } from "../../reducers/createReducer";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
@@ -112,7 +109,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const MembersTable = ({ data, dispatch, link }) => {
+const PayDataTab = ({ data, dispatch, link }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -134,12 +131,12 @@ const MembersTable = ({ data, dispatch, link }) => {
       <Table sx={{ width: "100%" }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Noms</StyledTableCell>
+            <StyledTableCell>Nom</StyledTableCell>
             <StyledTableCell>Postnom</StyledTableCell>
             <StyledTableCell>Prenom</StyledTableCell>
-            <StyledTableCell>Email</StyledTableCell>
-            <StyledTableCell>Téléphone</StyledTableCell>
-            <StyledTableCell>Rôle</StyledTableCell>
+            <StyledTableCell>Montant</StyledTableCell>
+            <StyledTableCell>Université</StyledTableCell>
+            <StyledTableCell>Date</StyledTableCell>
             <StyledTableCell></StyledTableCell>
           </TableRow>
         </TableHead>
@@ -160,24 +157,16 @@ const MembersTable = ({ data, dispatch, link }) => {
               <StyledTableCell>
                 <div style={{ display: "flex" }}>
                   <Link
-                    to={
-                      link
-                        ? {
-                            pathname: `${link}/${item.id_utilisateur}`,
-                            state: item,
-                          }
-                        : "#"
-                    }
+                    to={{
+                      pathname: `${link}/${item.id_utilisateur}`,
+                      state: item,
+                    }}
                   >
                     <Button>
-                      <EditIcon />
+                      {/* <EditIcon /> */}
+                      Voir Plus
                     </Button>
                   </Link>
-                  <MessageDialog
-                    deleteMyUser={() =>
-                      dispatch(deleteUser(item.id_utilisateur))
-                    }
-                  />
                 </div>
               </StyledTableCell>
             </StyledTableRow>
@@ -214,4 +203,4 @@ const MembersTable = ({ data, dispatch, link }) => {
   );
 };
 
-export default MembersTable;
+export default PayDataTab;

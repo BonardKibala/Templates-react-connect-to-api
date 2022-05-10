@@ -1,30 +1,31 @@
-import React, { useEffect} from "react";
+import React from "react";
 import {
   ClientContainer,
   Container1,
   Container2,
   Title,
-} from "./clientsElements";
-import MembersTable from "../../components/tables/dataTableGrid";
-import { fetchAllUser } from "../../reducers/fetchingReducer";
+} from "../members/clientsElements";
+import { payList } from "../../reducers/payListReducer";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingSpins from "../../components/loader/loading";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import PayDataTab from "../../components/tables/payDataTab";
 
-const AllAdmin = () => {
+const PayPage = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.admin);
-  useEffect(() => {
-    dispatch(fetchAllUser());
+  const data = useSelector((state) => state.paylist);
+  React.useEffect(() => {
+    dispatch(payList());
   });
+
   return (
     <ClientContainer>
       {data.length > 0 ? (
         <div>
           <Container1>
-            <Title>Tous nos membres</Title>
-            <Link to="/RegisterAdmin">
+            <Title>Les différents payments Effectués</Title>
+            <Link to="/registerManager">
             <Button
               variant="outlined"
               sx={{ color: "#220a37", border: "1px solid #ff8000" }}
@@ -34,7 +35,7 @@ const AllAdmin = () => {
             </Link>
           </Container1>
           <Container2>
-            <MembersTable data={data} dispatch={dispatch} link=''/>
+            <PayDataTab data={data} dispatch={dispatch} link='/updateAdmin' />
           </Container2>
         </div>
       ) : (
@@ -44,4 +45,4 @@ const AllAdmin = () => {
   );
 };
 
-export default AllAdmin;
+export default PayPage;

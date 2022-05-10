@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetch2, fetchUpdateRemove } from "../helpers/fetch2";
+import { fetch2, fetchRemove } from "../helpers/fetch2";
 
 const initialState = {
   error: "",
@@ -7,6 +7,10 @@ const initialState = {
   succes: "",
   deleteError: "",
   deleteSuccess: "",
+  updateError: "",
+  updateSucces: "",
+  updateManError: "",
+  updateManSucces: "",
 };
 
 export const createAdmin = createAsyncThunk("createadmin", async (body) => {
@@ -19,8 +23,18 @@ export const createManager = createAsyncThunk("createmanager", async (body) => {
   return result;
 });
 
+export const updatedAdmin = createAsyncThunk("updatedadmin", async (body) => {
+  const result = await fetch2("/user/update/admin/", body);
+  return result;
+});
+
+export const updatedManager = createAsyncThunk("updatedmanager", async (body) => {
+  const result = await fetch2("/user/update/manager/", body);
+  return result;
+});
+
 export const deleteUser = createAsyncThunk("deleteuser", async (iduser) => {
-  const result = await fetchUpdateRemove(`/user/delete/${iduser}`, "DELETE");
+  const result = await fetchRemove(`/user/delete/${iduser}`, "DELETE");
   return result;
 });
 
@@ -73,6 +87,54 @@ const createReducer = createSlice({
     },
     [createManager.rejected]: (state, action) => {
       state.error =
+        "Erreur de connexion, Veuillez vérifier votre connexion ou vos paramètres réseaux";
+    },
+    [updatedAdmin.fulfilled]: (
+      state,
+      { payload: { message, error, sucess } }
+    ) => {
+      state.loading = false;
+      if (error && !message) {
+        state.updateError = error;
+        state.updateSucces = "";
+      } else if (message && error) {
+        state.updateError = message[0];
+        state.updateSucces = "";
+      } else {
+        state.updateSucces = sucess;
+        state.updateError = "";
+      }
+    },
+    [updatedAdmin.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [updatedAdmin.rejected]: (state, action) => {
+      state.loading = false;
+      state.updateError =
+        "Erreur de connexion, Veuillez vérifier votre connexion ou vos paramètres réseaux";
+    },
+    [updatedManager.fulfilled]: (
+      state,
+      { payload: { message, error, sucess } }
+    ) => {
+      state.loading = false;
+      if (error && !message) {
+        state.updateManError = error;
+        state.updateManSucces = "";
+      } else if (message && error) {
+        state.updateManError = message[0];
+        state.updateManSucces = "";
+      } else {
+        state.updateManSucces = sucess;
+        state.updateManError = "";
+      }
+    },
+    [updatedManager.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [updatedManager.rejected]: (state, action) => {
+      state.loading = false;
+      state.updateManError =
         "Erreur de connexion, Veuillez vérifier votre connexion ou vos paramètres réseaux";
     },
     [deleteUser.fulfilled]: (state, { payload: { error, sucess } }) => {

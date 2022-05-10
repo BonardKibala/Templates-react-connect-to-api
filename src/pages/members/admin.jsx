@@ -35,7 +35,7 @@ const Administrateurs = () => {
             </Link>
           </Container1>
           <Container2>
-            <MembersTable data={data} dispatch={dispatch} link='/registerAdmin' />
+            <MembersTable data={data} dispatch={dispatch} link='/updateAdmin' />
           </Container2>
         </div>
       ) : (

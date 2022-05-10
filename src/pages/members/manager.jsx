@@ -5,7 +5,6 @@ import {
   Container2,
   Title,
 } from "./clientsElements";
-import FormDialogs from "../../components/dialogs/formDialog";
 import MembersTable from "../../components/tables/dataTableGrid";
 import { managers } from "../../reducers/managerReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,7 +35,7 @@ const Managers = () => {
             </Link>
           </Container1>
           <Container2>
-            <MembersTable data={data} dispatch={dispatch} link='/registerManager' />
+            <MembersTable data={data} dispatch={dispatch} link='/updateManager' />
           </Container2>
         </div>
       ) : (
