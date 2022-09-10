@@ -3,17 +3,17 @@ import "./App.css";
 import Login from "./pages/login/login";
 import { useSelector, useDispatch } from "react-redux";
 import { addToken } from "./reducers/authReducer";
-import Dashboard from "./dashboard/dashboard";
+import UserRegister from "./pages/userRegister/userRegister";
 
 const App = () => {
-  const token = useSelector((state) => state.user.mycampa_token);
+  const token = useSelector((state) => state.user.acces_token);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(addToken());
   }, [dispatch]);
 
-  return <div>{token ? <Dashboard /> : <Login />}</div>;
+  return <div>{!token ? <UserRegister /> : <Login />}</div>;
 };
 
 export default App;

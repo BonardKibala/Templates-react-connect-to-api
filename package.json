@@ -1,8 +1,8 @@
 {
-  "name": "projet3-react",
+  "name": "test-front",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://mycampa-api.herokuapp.com",
+  "proxy": "http://localhost:3000/api",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",

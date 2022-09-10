@@ -1,4 +1,5 @@
-const host = "https://mycampa-api.herokuapp.com";
+// const host = "https://mycampa-api.herokuapp.com";
+const host = "localhost:3000";
 export const fetch2 = async (api, body) => {
   const res = await fetch(api, {
     method: "post",

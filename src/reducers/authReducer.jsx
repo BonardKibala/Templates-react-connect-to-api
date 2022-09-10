@@ -2,14 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetch2 } from "../helpers/fetch2";
 
 const initialState = {
-  mycampa_token: "",
+  acces_token: "",
   loading: false,
   error: "",
   userlogin: {},
+  success: "",
 };
 
 export const signupUser = createAsyncThunk("signupuser", async (body) => {
-  const result = await fetch2("/user/register/admin", body);
+  const result = await fetch2("/user/register", body);
   return result;
 });
 
@@ -23,35 +24,41 @@ const authReducer = createSlice({
   initialState,
   reducers: {
     addToken: (state, action) => {
-      state.mycampa_token = localStorage.getItem("mycampa_token");
+      state.acces_token = localStorage.getItem("acces_token");
       const user = localStorage.getItem("user");
       state.userlogin = JSON.parse(user);
     },
     removeToken: (state, action) => {
-      state.mycampa_token = localStorage.removeItem("mycampa_token");
+      state.acces_token = localStorage.removeItem("acces_token");
       state.userlogin = localStorage.removeItem("user");
     },
   },
   extraReducers: {
-    [signupUser.fulfilled]: (state, { payload: { error, message } }) => {
-      // const {error,message} = payload;
+    [signupUser.fulfilled]: (
+      state,
+      { payload: { error, message, success } }
+    ) => {
       state.loading = false;
       if (error) {
         state.error = error;
       } else if (message) {
-        state.error = message;
+        state.error = message[0];
+      } else if (success) {
+        state.error = success;
       }
     },
     [signupUser.pending]: (state, action) => {
       state.loading = true;
     },
-    [signupUser.rejected]: (state, action) => {},
+    [signupUser.rejected]: (state, action) => {
+      state.error = "Pas de connexion internet";
+    },
     [signinUser.pending]: (state, action) => {
       state.loading = true;
     },
     [signinUser.fulfilled]: (
       state,
-      { payload: { error, mycampa_token, message, user } }
+      { payload: { error, acces_token, message, user } }
     ) => {
       state.loading = false;
       if (error && !message) {
@@ -59,8 +66,8 @@ const authReducer = createSlice({
       } else if (message && error) {
         state.error = message[0];
       } else {
-        state.mycampa_token = mycampa_token;
-        localStorage.setItem("mycampa_token", mycampa_token);
+        state.acces_token = acces_token;
+        localStorage.setItem("acces_token", acces_token);
         state.userlogin = user;
         localStorage.setItem("user", JSON.stringify(user));
       }
