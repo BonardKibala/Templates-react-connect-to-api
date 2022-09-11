@@ -5,6 +5,7 @@ export const LoginContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  overflow: auto;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

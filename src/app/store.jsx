@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../reducers/authReducer";
 import fetchingReducer from "../reducers/fetchingReducer";
 import createReducer from "../reducers/createReducer";
-import clientsReducer from "../reducers/clientsReducer";
+import personneReducer from "../reducers/personneReducer";
 import adminReducer from "../reducers/adminReducer";
 import managerReducer from "../reducers/managerReducer";
 import payListReducer from "../reducers/payListReducer";
@@ -14,7 +14,7 @@ export const store = configureStore({
     user: authReducer,
     create: createReducer,
     fetch: fetchingReducer,
-    client: clientsReducer,
+    personne: personneReducer,
     admin: adminReducer,
     manager: managerReducer,
     paylist: payListReducer,

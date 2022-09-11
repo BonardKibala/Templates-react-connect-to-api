@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import {
-  ForgotText,
   FormContainer,
   InputContainer,
   LoginContainer,
@@ -15,79 +14,60 @@ import {
   LoaderContainer,
 } from "../login/loginElements";
 import Login from "../login/login";
+import DenseTable from "./table";
+import { personne } from "../../reducers/personneReducer";
 
 const UserRegister = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const auth = "signin";
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
   const [connexionText, setConnexionText] = useState(false);
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
+  const personnes = useSelector((state) => state.personne.personnes);
+
 
   const register = () => {
-    if (auth === "signin") {
-      dispatch(
-        signupUser({
-          username: username,
-          password: password,
-          password_confirm: confirmPassword,
-        })
-      );
-    }
+    dispatch(
+      signupUser({
+        nom: nom,
+        prenom: prenom,
+      })
+    );
   };
 
-  const connexion = () => {
-    if (!connexionText) {
-      setConnexionText(true);
-    } else {
-      setConnexionText(false);
-    }
-  };
   return (
     <>
       {!connexionText ? (
         <LoginContainer>
           <TitleContainer>
             <Title color={`#ff8000`} size={48}>
-              Créer votre compte
+              X-Eyano, Ajouter une personne
             </Title>
           </TitleContainer>
           <FormContainer>
             <Title color={`#220a37`} size={24}>
-              {!connexionText ? "Connexion" : ""}
+              {!connexionText ? "Enregistrement" : ""}
             </Title>
-
             <>
               <InputContainer>
                 <TextField
-                  name="username"
-                  label="Nom d'utilisateur"
+                  name="nom"
+                  label="Votre nom"
+                  type="text"
                   // InputProps={{ disableUnderline: true }}
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
+                  onChange={(e) => setNom(e.target.value)}
+                  value={nom}
                   sx={{ width: "95%" }}
                 />
               </InputContainer>
               <InputContainer>
                 <TextField
-                  name="password"
-                  label="Mot de passe"
+                  name="prenom"
+                  label="Votre prenom"
                   id="standard-basic"
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                  sx={{ width: "95%" }}
-                />
-              </InputContainer>
-              <InputContainer>
-                <TextField
-                  name="confirmPassword"
-                  label="Confirmer Mot de passe"
-                  id="standard-basic"
-                  type="password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  value={confirmPassword}
+                  type="text"
+                  onChange={(e) => setPrenom(e.target.value)}
+                  value={prenom}
                   sx={{ width: "95%" }}
                 />
               </InputContainer>
@@ -118,23 +98,20 @@ const UserRegister = () => {
                 </Button>
               </SubmitContainer>
               {error && (
-               <Alert
-               variant="outlined"
-               severity={
-                 error === "Enregistrement effectué avec succès"
-                   ? "success"
-                   : "error"
-               }
-               sx={{ width: "60%", margin: "0 auto", marginTop: "2rem" }}
-             >
-               {error}
-             </Alert>
+                <Alert
+                  variant="outlined"
+                  severity={
+                    error === "Enregistrement effectué avec succès"
+                      ? "success"
+                      : "error"
+                  }
+                  sx={{ width: "60%", margin: "0 auto", marginTop: "2rem" }}
+                >
+                  {error}
+                </Alert>
               )}
             </>
-
-            <ForgotText onClick={() => connexion()}>
-              {!connexionText ? "Connexion" : ""}
-            </ForgotText>
+            <DenseTable datas={personnes} />
           </FormContainer>
         </LoginContainer>
       ) : (

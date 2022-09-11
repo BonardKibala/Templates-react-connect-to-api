@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetch2 } from "../helpers/fetch2";
+const host = "http://localhost:3000/api";
 
 const initialState = {
   acces_token: "",
@@ -10,12 +11,13 @@ const initialState = {
 };
 
 export const signupUser = createAsyncThunk("signupuser", async (body) => {
-  const result = await fetch2("/user/register", body);
+  const result = await fetch2(`${host}/personne/register`, body);
+  console.log(result);
   return result;
 });
 
 export const signinUser = createAsyncThunk("signinuser", async (body) => {
-  const result = await fetch2("/user/login", body);
+  const result = await fetch2("/personne/login", body);
   return result;
 });
 
@@ -25,12 +27,12 @@ const authReducer = createSlice({
   reducers: {
     addToken: (state, action) => {
       state.acces_token = localStorage.getItem("acces_token");
-      const user = localStorage.getItem("user");
+      const user = localStorage.getItem("personne");
       state.userlogin = JSON.parse(user);
     },
     removeToken: (state, action) => {
       state.acces_token = localStorage.removeItem("acces_token");
-      state.userlogin = localStorage.removeItem("user");
+      state.userlogin = localStorage.removeItem("personne");
     },
   },
   extraReducers: {
@@ -46,6 +48,7 @@ const authReducer = createSlice({
       } else if (success) {
         state.error = success;
       }
+      console.log();
     },
     [signupUser.pending]: (state, action) => {
       state.loading = true;
@@ -69,7 +72,7 @@ const authReducer = createSlice({
         state.acces_token = acces_token;
         localStorage.setItem("acces_token", acces_token);
         state.userlogin = user;
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("personne", JSON.stringify(user));
       }
     },
   },

@@ -1,12 +1,12 @@
 // const host = "https://mycampa-api.herokuapp.com";
-const host = "localhost:3000";
+const host = "http://localhost:3000/api";
 export const fetch2 = async (api, body) => {
   const res = await fetch(api, {
     method: "post",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("mycampa_token"),
+      Authorization: "Bearer " + localStorage.getItem("acces_token"),
       Host: host,
     },
     body: JSON.stringify(body),
@@ -20,7 +20,7 @@ export const fetch3 = async (api, type) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("mycampa_token"),
+      Authorization: "Bearer " + localStorage.getItem("acces_token"),
       Host: host,
     },
   });
@@ -33,7 +33,7 @@ export const fetchRemove = async (api, type) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("mycampa_token"),
+      Authorization: "Bearer " + localStorage.getItem("acces_token"),
       Host: host,
     },
   });

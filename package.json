@@ -2,7 +2,7 @@
   "name": "test-front",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/api",
+  "proxy":"http://localhost:3000/api",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
