@@ -11,13 +11,13 @@ const initialState = {
 };
 
 export const signupUser = createAsyncThunk("signupuser", async (body) => {
-  const result = await fetch2(`${host}/personne/register`, body);
+  const result = await fetch2(`${host}/user/register`, body);
   console.log(result);
   return result;
 });
 
 export const signinUser = createAsyncThunk("signinuser", async (body) => {
-  const result = await fetch2("/personne/login", body);
+  const result = await fetch2(`${host}/user/login`, body);
   return result;
 });
 
@@ -48,7 +48,6 @@ const authReducer = createSlice({
       } else if (success) {
         state.error = success;
       }
-      console.log();
     },
     [signupUser.pending]: (state, action) => {
       state.loading = true;

@@ -3,8 +3,8 @@ import "./App.css";
 import Login from "./pages/login/login";
 import { useSelector, useDispatch } from "react-redux";
 import { addToken } from "./reducers/authReducer";
-import UserRegister from "./pages/userRegister/userRegister";
-import { personne } from "./reducers/personneReducer";
+import { etudiant } from "./reducers/getStudentReducer";
+import StudentRegister from "./pages/user/studentRegister";
 
 const App = () => {
   const token = useSelector((state) => state.user.acces_token);
@@ -12,10 +12,10 @@ const App = () => {
 
   useEffect(() => {
     dispatch(addToken());
-    dispatch(personne());
+    dispatch(etudiant());
   }, [dispatch]);
 
-  return <div>{!token ? <UserRegister /> : ""}</div>;
+  return <div>{!token ? <Login /> : <StudentRegister />}</div>;
 };
 
 export default App;

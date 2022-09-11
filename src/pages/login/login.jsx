@@ -14,21 +14,18 @@ import {
   SubmitContainer,
   LoaderContainer,
 } from "./loginElements";
-import UserRegister from "../userRegister/userRegister";
+import UserRegister from "../user/userRegister";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const auth = "signin";
   const [forgotPassword, setForgotPassword] = useState(false);
   const [registerText, setRegisterText] = useState(false);
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
 
   const authenticate = () => {
-    if (auth === "signin") {
-      dispatch(signinUser({ username: username, password: password }));
-    }
+      dispatch(signinUser({ login: login, password: password }));
   };
 
   const forgot = () => {
@@ -51,7 +48,7 @@ const Login = () => {
         <LoginContainer>
           <TitleContainer>
             <Title color={`#ff8000`} size={48}>
-              X-Eyano Sarl
+              Orange Rdc
             </Title>
           </TitleContainer>
           <FormContainer>
@@ -64,11 +61,11 @@ const Login = () => {
               <>
                 <InputContainer>
                   <TextField
-                    name="username"
-                    label="Nom d'utilisateur"
+                    name="login"
+                    label="Votre Login"
                     // InputProps={{ disableUnderline: true }}
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
+                    onChange={(e) => setLogin(e.target.value)}
+                    value={login}
                     sx={{ width: "95%" }}
                   />
                 </InputContainer>
@@ -126,8 +123,8 @@ const Login = () => {
                     name="username"
                     label="Adresse e-mail"
                     InputProps={{ disableUnderline: true }}
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
+                    onChange={(e) => setLogin(e.target.value)}
+                    value={login}
                     sx={{ width: "95%" }}
                   />
                 </InputContainer>

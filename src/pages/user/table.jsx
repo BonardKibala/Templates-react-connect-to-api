@@ -8,10 +8,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-
-
+import { useDispatch } from "react-redux";
+import { removeStudent } from "../../reducers/getStudentReducer";
 
 export default function DenseTable({ datas }) {
+  const dispatch = useDispatch();
+ 
   return (
     <TableContainer
       component={Paper}
@@ -26,12 +28,12 @@ export default function DenseTable({ datas }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {datas?.map(({ nom, prenom }) => (
+          {datas?.map(({ etudiantId, nom, prenom }) => (
             <TableRow key={nom}>
               <TableCell align="left">{nom}</TableCell>
               <TableCell align="left">{prenom}</TableCell>
               <TableCell align="left">
-                <IconButton aria-label="delete" sx={{ color: "red" }}>
+                <IconButton aria-label="delete" sx={{ color: "red" }} onClick={()=>dispatch(removeStudent(etudiantId))}>
                   <DeleteIcon />
                 </IconButton>
               </TableCell>
